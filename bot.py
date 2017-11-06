@@ -48,6 +48,4 @@ class Birbbot(commands.Bot):
 		print('Logged in as')
 		print(bot.user.name)
 		print('------')
-    print('Server start time is:' + self.currentuptime)
-    print('------')
 		print('Ready')
