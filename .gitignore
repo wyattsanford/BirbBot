@@ -1,0 +1,12 @@
+.idea/
+*.pyc
+config.py
+Rooster.log
+__pycache__/
+cogs/__pycache__/
+discord/
+*.dir
+*.bak
+*.dat
+esicache/
+.vscode/
