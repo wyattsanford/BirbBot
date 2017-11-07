@@ -75,7 +75,7 @@ class Birbbot(commands.Bot):
 		print('Ready')
 
 	async def process_commands(self, message):
-		ctx = self.get_context(message, cls=context.Context)
+		ctx = await self.get_context(message, cls=context.Context)
 
 		if ctx.command is None:
 			return
