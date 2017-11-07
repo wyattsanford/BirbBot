@@ -116,4 +116,3 @@ class Birbbot(commands.Bot):
 		await ctx.send('<{}>'.format(
 			discord.utils.oauth_url(self.client_id, perms)))
 
-# bot.run('Mzc3MTUzNzc2MzYyMDYxODQ4.DOJDFg.hfYkAOBifDsOj5ewuNY1hJcUd7k')
