@@ -34,7 +34,7 @@ def setup_logging():
             hdlr.close()
             log.removeHandler(hdlr)
 
-def run_bot(self):
+def run_bot():
 	loop = asyncio.get_event_loop()
 	bot = Birbbot()
 	bot.run()
@@ -42,7 +42,7 @@ def run_bot(self):
 # @click.group(invoke_without_command=True)
 # @click.pass_context
 def main():
-	run.bot()
+	run_bot()
 
 if __name__ == '__main__':
 	main()

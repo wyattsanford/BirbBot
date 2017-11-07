@@ -47,10 +47,10 @@ class Birbbot(commands.Bot):
 		self.client_id = config.client_id
 
 		self.session = aiohttp.ClientSession(loop=self.loop)
-		self.esi = ESI ()
+#		self.esi = ESI ()
 
 		self.add_command(self.uptime)
-		self.add_comand(self.join)
+#		self.add_comand(self.join)
 
 	async def start_redis(self):
 		self.redis = await aioredis.create_pool(
@@ -71,7 +71,11 @@ class Birbbot(commands.Bot):
 		await self.invoke(ctx)
 
 	def run(self):
-		super().run(config.TOKEN, reconnect=True)
+		super().run(config.token, reconnect=True)
+
+	@commands.command(hidden=True)
+	async def uptime(self, ctx):
+		await ctx.send(pendulum.now(tz='UTC').diff_for_humans(self.currentuptime, absolute=True))
 
 	@property
 	def config(self):
