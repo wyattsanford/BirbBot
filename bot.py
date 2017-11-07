@@ -18,12 +18,12 @@ description = '''Birbbot v 1.0'''
 
 initial_feathers = (
 #	'feathers.eft',
-	'feathers.who',
+#	'feathers.who',
 #	'feathers.insurance',
 #	'feathers.killwatch',
-	'feathers.market',
+#	'feathers.market',
 #	'feathers.remind',
-#	'feathers.timeComp',
+	'feathers.timeComp',
 #	'feathers.thera',
 #	'feathers.trivia',
 	'feathers.weather',
