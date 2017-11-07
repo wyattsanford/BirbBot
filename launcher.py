@@ -34,14 +34,14 @@ def setup_logging():
             hdlr.close()
             log.removeHandler(hdlr)
 
-def run_bot():
+def run_bot(self):
 	loop = asyncio.get_event_loop()
 	bot = Birbbot()
 	bot.run()
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-def main():
+def main(self):
 	run.bot()
 
 if __name__ == '__main__':
