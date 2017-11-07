@@ -28,7 +28,7 @@ initial_feathers = (
 #	'feathers.killwatch',
 #	'feathers.market',
 #	'feathers.remind',
-#	'feathers.timeComp',
+	'feathers.timeComp',
 #	'feathers.thera',
 #	'feathers.trivia',
 #	'feathers.weather',
