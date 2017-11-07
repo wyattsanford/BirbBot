@@ -39,7 +39,7 @@ def run_bot():
 	bot = Birbbot()
 	bot.run()
 
-@click.group(invoke_without_command=True
+@click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
 	if ctx.invoked_subcommand is None:
