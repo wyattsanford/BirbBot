@@ -7,8 +7,6 @@ import asyncio
 import discord
 from discord.ext import commands
 #import aioredis
-
-
 try:
 	import config #config contains token client id, API, and other method settings
 except ImportError:
@@ -28,7 +26,7 @@ initial_feathers = (
 #	'feathers.killwatch',
 #	'feathers.market',
 #	'feathers.remind',
-	'feathers.timeComp',
+#	'feathers.timeComp',
 #	'feathers.thera',
 #	'feathers.trivia',
 #	'feathers.weather',
@@ -71,29 +69,28 @@ class Birbbot(commands.Bot):
 			return
 		await self.invoke(ctx)
 
-	def run(self):
+	def run():
 		super().run(config.TOKEN, reconnect=True)
 
 	@property
 	def config(self):
 		return __import__('config')
 
-	@commands.command(hidden=True, aliases=['invite']
-	async def join(*args, **kwargs):
-                """Joins a server."""
-                perms = discord.Permissions.none()
-                perms.read_messages = True
-                perms.external_emojis = True
-                perms.send_messages = True
-                perms.manage_roles = False
-                perms.manage_channels = False
-                perms.ban_members = False
-                perms.kick_members = False
-                perms.embed_links = True
-                perms.read_message_history = True
-                perms.attach_files = True
-                perms.add_reactions = True
-                await ctx.send('<{}>'.format(
-                        discord.utils.oath_url(self.client_id, perms)))
-
-#bot.run('Mzc3MTUzNzc2MzYyMDYxODQ4.DOJDFg.hfYkAOBifDsOj5ewuNY1hJcUd7k')
+	@commands.command(hidden=True, aliases=['invite'])
+	async def join(self, ctx):
+		"""Joins a server."""
+		perms = discord.Permissions.none()
+		perms.read_messages = True
+		perms.external_emojis = True
+		perms.send_messages = True
+		perms.manage_roles = False
+		perms.manage_channels = False
+		perms.ban_members = False
+		perms.kick_members = False
+		perms.manage_messages = False
+		perms.embed_links = True
+		perms.read_message_history = True
+		perms.attach_files = True
+		perms.add_reactions = True
+		await ctx.send('<{}>'.format(
+			discord.utils.oauth_url(self.client_id, perms)))
