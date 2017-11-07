@@ -41,11 +41,8 @@ def run_bot():
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-def main(ctx):
-	if ctx.invoked_subcommand is None:
-		loop = asyncio.get_event_loop()
-		with setup_logging():
-			run.bot()
+def main():
+	run.bot()
 
 if __name__ == '__main__':
 	main()

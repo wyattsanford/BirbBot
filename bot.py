@@ -79,7 +79,7 @@ class Birbbot(commands.Bot):
 		return __import__('config')
 
 	@commands.command(hidden=True, aliases=['invite']
-	async def join(self, ctx):
+	async def join(*args, **kwargs):
                 """Joins a server."""
                 perms = discord.Permissions.none()
                 perms.read_messages = True
