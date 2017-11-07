@@ -39,9 +39,9 @@ def run_bot(self):
 	bot = Birbbot()
 	bot.run()
 
-@click.group(invoke_without_command=True)
-@click.pass_context
-def main(self):
+# @click.group(invoke_without_command=True)
+# @click.pass_context
+def main():
 	run.bot()
 
 if __name__ == '__main__':

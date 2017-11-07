@@ -3,10 +3,11 @@ import sys
 import traceback
 import aiohttp
 import asyncio
-# import pendulum
+import pendulum
 import discord
 from discord.ext import commands
-#import aioredis
+import aioredis
+import bot
 try:
 	import config #config contains token client id, API, and other method settings
 except ImportError:
@@ -57,7 +58,7 @@ class Birbbot(commands.Bot):
 
 	async def on_ready(self):
 		await self.start_redis()
-#		self.currentuptime = pendulum.now(tz='UTC')
+		self.currentuptime = pendulum.now(tz='UTC')
 		print('Logged in as')
 		print('------')
 		print('Ready')
@@ -69,7 +70,7 @@ class Birbbot(commands.Bot):
 			return
 		await self.invoke(ctx)
 
-	def run():
+	def run(self):
 		super().run(config.TOKEN, reconnect=True)
 
 	@property
@@ -94,3 +95,5 @@ class Birbbot(commands.Bot):
 		perms.add_reactions = True
 		await ctx.send('<{}>'.format(
 			discord.utils.oauth_url(self.client_id, perms)))
+
+# bot.run('Mzc3MTUzNzc2MzYyMDYxODQ4.DOJDFg.hfYkAOBifDsOj5ewuNY1hJcUd7k')
