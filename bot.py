@@ -8,6 +8,10 @@ import discord
 from discord.ext import commands
 import aioredis
 import bot
+
+from cogs.utils import context 
+from cogs.utils.esi import ESI
+
 try:
 	import config #config contains token client id, API, and other method settings
 except ImportError:
@@ -20,18 +24,18 @@ description = '''Birbbot v 1.0'''
 
 print(sys.version)
 
-initial_feathers = (
-#	'feathers.eft',
-#	'feathers.who',
-#	'feathers.insurance',
-#	'feathers.killwatch',
-#	'feathers.market',
-#	'feathers.remind',
-#	'feathers.timeComp',
-#	'feathers.thera',
-#	'feathers.trivia',
-#	'feathers.weather',
-	'feathers.time',
+initial_cogs = (
+#	'cogs.eft',
+#	'cogs.who',
+#	'cogs.insurance',
+#	'cogs.killwatch',
+#	'cogs.market',
+#	'cogs.remind',
+#	'cogs.timeComp',
+#	'cogs.thera',
+#	'cogs.trivia',
+#	'cogs.weather',
+	'cogs.time',
 )
 
 print(discord.__version__)
@@ -47,10 +51,17 @@ class Birbbot(commands.Bot):
 		self.client_id = config.client_id
 
 		self.session = aiohttp.ClientSession(loop=self.loop)
-#		self.esi = ESI ()
+		self.esi = ESI()
 
 		self.add_command(self.uptime)
 #		self.add_comand(self.join)
+
+		for cog in initial_cogs:
+			try:
+				self.load_extension(cog)
+			except Exception as e:
+				print('Failed to load cog {}'.format(cog), file=sys.stderr)
+				traceback.print_exc()	
 
 	async def start_redis(self):
 		self.redis = await aioredis.create_pool(
@@ -64,11 +75,16 @@ class Birbbot(commands.Bot):
 		print('Ready')
 
 	async def process_commands(self, message):
-		ctx = await self.get_context(message, cls=context.Context)
+		ctx = self.get_context(message, cls=context.Context)
 
 		if ctx.command is None:
 			return
 		await self.invoke(ctx)
+
+	async def on_message(self, message):
+		if message.author.bot:
+			return
+		await self.process_commands(message)
 
 	def run(self):
 		super().run(config.token, reconnect=True)
